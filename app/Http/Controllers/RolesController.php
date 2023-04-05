@@ -3,13 +3,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
-use App\Models\User;
 use App\Http\Resources\UserResource;
+use App\Services\UserService;
+use App\Services\RolesService;
 
 class RolesController extends Controller {
-
     public function __construct()
     {
+        $this->userService = new UserService();
+        $this->rolesService = new RolesService();
         $this->middleware('auth:api');
     }
 
@@ -25,25 +27,14 @@ class RolesController extends Controller {
 
     public function attach(Request $request, string $id)
     {
-        $user = User::find($request->userId);
-        $exist = false;
+        try {
+            $this->rolesService->attachRole($request->userId, $id);
 
-        foreach ($user->roles as $role) {
-            if ($role == $id) {
-                $exist = true;
-                break;
-            }
-        }
-
-        if ($exist) {
+        } catch (err) {
             return response()->json([
-                'message' => 'Already exist'
+                'message' => err
             ], 405); 
         }
-       
-        $user->roles()->attach($id);
-
-        
         return new UserResource($user);
     }
 }

@@ -7,11 +7,11 @@ use App\Http\Controllers\RolesController;
 use App\Http\Middleware\UserRoleMiddleware;
 
 
-Route::get('users', [UserController::class, 'index'])->middleware('user-role:user');
-Route::get('users/{id}', [UserController::class, 'show'] )->middleware('user-role:user');
+Route::get('users', [UserController::class, 'index'])->middleware('user-role:User');
+Route::get('users/{id}', [UserController::class, 'show'] )->middleware('user-role:User');
 // Route::post('users', [UserController::class, 'store'] )->middleware('user-role:user');
-Route::put('users/{id}', [UserController::class, 'update'] )->middleware('user-role:user');
-Route::delete('users/{id}', [UserController::class, 'delete'] )->middleware('user-role:manager');
+Route::put('users/{id}', [UserController::class, 'update'] )->middleware('user-role:Manager');
+Route::delete('users/{id}', [UserController::class, 'delete'] )->middleware('user-role:Admin');
 
 // Route::middleware(['user-role:user'])->group(function()
 // {
@@ -25,7 +25,7 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(RolesController::class)->group(function () {
-    Route::get('roles', 'index');
-    Route::get('roles/{id}', 'show');
-    Route::post('roles/{id}', 'attach');
+    Route::get('roles', 'index')->middleware('user-role:Admin');
+    Route::get('roles/{id}', 'show')->middleware('user-role:Admin');
+    Route::post('roles/{id}', 'attach')->middleware('user-role:Manager');
 });
