@@ -29,12 +29,29 @@ class RolesController extends Controller {
     {
         try {
             $this->rolesService->attachRole($request->userId, $id);
-
         } catch (err) {
             return response()->json([
                 'message' => err
             ], 405); 
         }
-        return new UserResource($user);
+        return response()->json([
+            'message' => 'Успешно добавлена роль'
+        ], 201); 
     }
+
+    public function detach(Request $request, string $id)
+    {
+        try {
+            $this->rolesService->detachRole($request->userId, $id);
+        } catch (err) {
+            return response()->json([
+                'message' => err
+            ], 405); 
+        }
+        return response()->json([
+            'message' => 'Успешно удалена роль'
+        ],  201); 
+    }
+
+   
 }

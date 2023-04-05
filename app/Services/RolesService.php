@@ -16,8 +16,6 @@ class RolesService
     }
 
     public function attachRole($userId, $roleId) {
-        // if ($roleId > 3) throw new Exception('Role not exist');
-
         $user = $this->userService->getUserByID($userId);
         $userRoles = $user['roles'];
 
@@ -37,6 +35,29 @@ class RolesService
             }
         } else {
             throw new \Exception('Already exist');
+        }
+    }
+
+    public function detachRole($userId, $roleId) {
+        $user = $this->userService->getUserByID($userId);
+        $userRoles = $user['roles'];
+
+        $exist = false;
+        foreach ($userRoles as $userRole) {
+            if ($userRole['id'] == $roleId) {
+                $exist = true;
+                break;
+            }
+        }
+
+        if ($exist) {
+            try {
+                $user->roles()->detach($roleId);
+            } catch (\Throwable $th) {
+                throw new \Exception('Нет такой роли');
+            }
+        } else {
+            throw new \Exception('Already detached');
         }
     }
 }

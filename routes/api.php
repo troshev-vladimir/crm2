@@ -28,4 +28,5 @@ Route::controller(RolesController::class)->group(function () {
     Route::get('roles', 'index')->middleware('user-role:Admin');
     Route::get('roles/{id}', 'show')->middleware('user-role:Admin');
     Route::post('roles/{id}', 'attach')->middleware('user-role:Manager');
+    Route::delete('roles/{id}', 'detach')->middleware('user-role:Manager');
 });
