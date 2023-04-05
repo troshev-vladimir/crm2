@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -21,9 +21,15 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
+//where('email', $request->email)->
+        $currentUser = DB::table('users')
+        ->leftJoin('user_role', 'users.id', '=', 'user_role.user_id')
+        ->leftJoin('roles', 'role_id', '=', 'roles.id')
+        ->groupBy('login')
+        ->get();
 
         $credentials = $request->only('email', 'password');
-        $token = auth()->attempt($credentials); 
+        $token = auth()->claims(['roles' => '$currentUser'])->attempt($credentials); 
         if (!$token) {
             return response()->json([
                 'status' => 'error',
@@ -31,10 +37,11 @@ class AuthController extends Controller
             ], 401);
         }
 
+
         $user = Auth::user();
         return response()->json([
                 'status' => 'success',
-                'user' => $user,
+                'user' => $currentUser,
                 'authorisation' => [
                     'token' => $token,
                     'type' => 'bearer',

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller {
 

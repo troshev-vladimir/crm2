@@ -3,18 +3,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RolesController;
+use App\Http\Middleware\UserRoleMiddleware;
 
 
-Route::get('users', [UserController::class, 'index'] );
-Route::get('users/{id}', [UserController::class, 'show'] );
-Route::post('users', [UserController::class, 'store'] );
-Route::put('users/{id}', [UserController::class, 'update'] );
-Route::delete('users/{id}', [UserController::class, 'delete'] );
+Route::get('users', [UserController::class, 'index'])->middleware('user-role:user');
+Route::get('users/{id}', [UserController::class, 'show'] )->middleware('user-role:user');
+// Route::post('users', [UserController::class, 'store'] )->middleware('user-role:user');
+Route::put('users/{id}', [UserController::class, 'update'] )->middleware('user-role:user');
+Route::delete('users/{id}', [UserController::class, 'delete'] )->middleware('user-role:manager');
 
-
+// Route::middleware(['user-role:user'])->group(function()
+// {
+   
+// });
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
+});
+
+Route::controller(RolesController::class)->group(function () {
+    Route::get('roles', 'index');
+    Route::get('roles/{id}', 'show');
+    Route::post('roles/{id}', 'attach');
 });
