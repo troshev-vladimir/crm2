@@ -17,6 +17,7 @@ class UserRoleMiddleware
             return $next($request);
         }
         
-        return response()->json(['You do not have permission to access for this page.', 'only ' . $role . ' can do it. But u r', Auth::payload()->toArray()['roles']]);
+        $responseMessage = "You do not have permission to access for this page. only " . $role . " can do it.";
+        return response($responseMessage, 403);
     }
 }

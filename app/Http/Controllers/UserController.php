@@ -47,18 +47,7 @@ class UserController extends Controller {
 
     public function delete($id)
     {
-        // $authorization_header = $request->header('Authorization');
-        $current_user_id = auth()->payload()["sub"];
-        $user = User::findOrFail($current_user_id);
-        return $user;
-        
-        if (!Gate::allows('delete_user', $user)) {
-            abort(403);
-        }
-
         $user = User::findOrFail($id);
         $user->delete();
-
-        return 204;
     }
 }

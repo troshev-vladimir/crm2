@@ -21,7 +21,7 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-        $currentUser = DB::table('users') // TODO надо в сервис испльзуется в RolesController
+        $currentUser = DB::table('users')
         ->where('email', $request->email)
         ->leftJoin('user_role', 'users.id', '=', 'user_role.user_id')
         ->leftJoin('roles', 'role_id', '=', 'roles.id')
@@ -29,7 +29,7 @@ class AuthController extends Controller
         ->get();
 
         $userRoles;
-        foreach (json_decode($currentUser, true) as $user) { // TODO надо в сервис испльзуется в RolesController
+        foreach (json_decode($currentUser, true) as $user) {
             $userRoles[] = $user['name'];
         }
 
@@ -68,7 +68,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = Auth::login($user);
+        $token = auth()->login($user);
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
