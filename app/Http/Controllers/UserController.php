@@ -22,7 +22,7 @@ class UserController extends Controller {
         $per_page = 10;
 
         if ($request->filled('page')) {
-            $page = $request->query('page');
+            $page = $request->query('page') - 1;
         }
 
         if ($request->filled('per_page')) {
@@ -30,20 +30,20 @@ class UserController extends Controller {
         }
             
         $users = User::limit($per_page)->offset($page * $per_page);
-        // if ($request->filled('roles')) {
-        //     $users = User::with([
-        //         'roles' => function ($query) {
-        //             $query->where('role_id', 1);
-        //         }
-        //     ]);
-        //     $users = User::with([
-
-        // }
-
+        
         if ($request->filled('login')) {
             $login = $request->get('login');
             $users->where('login', 'like', "%$login%");
         }
+
+        if ($request->filled('roles')) {
+            $role_id = $request->query('roles');
+            $users = User::leftJoin('user_role', 'user_role.user_id', '=', 'users.id' )
+            ->select('users.*')
+            ->where('user_role.role_id', $role_id )
+            ->groupBy('users.login');
+        }
+
         //->orderBy('position')
         $resp = $users->get();
         return new UserCollection($resp);
@@ -70,8 +70,6 @@ class UserController extends Controller {
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
-        // $roleIds = [1, 2];
-        // $user->permissions()->attach($roleIds);
         return $user;
     }
 
