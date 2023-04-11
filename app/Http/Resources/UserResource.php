@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'login' => $this->login,
             'email' => $this->email,
-            'created_at' =>$this->created_at->format('Y.m.d H:i:s'),
+            'created_at' =>$this->created_at->format('Y.m.d'),
             'roles' => $this->roles->map(function ( $item,  $key) {
                 return [
                     'name' => $item->name,

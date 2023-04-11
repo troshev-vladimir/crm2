@@ -14,11 +14,22 @@ class UserSeeder extends Seeder
             'login' => 'AdminName',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
+            'created_at' => date("Y-m-d H:i:s"),
         ]);
 
         DB::table('user_role')->insert([
             'user_id' => '1',
             'role_id' => '1',
+        ]);
+
+        DB::table('user_role')->insert([
+            'user_id' => '1',
+            'role_id' => '2',
+        ]);
+
+        DB::table('user_role')->insert([
+            'user_id' => '1',
+            'role_id' => '3',
         ]);
     }
 }

@@ -24,4 +24,14 @@ class Client extends Model
         'updated_at',
         'birth_day'
     ];
+
+    public function department()
+    {
+        return $this->hasOneThrough(
+            'App\Models\Department',
+            'App\Models\Division',
+            'department_id', //Foreign key on the Division table
+            'id', //Foreign key on the Department table
+        );
+    }
 }

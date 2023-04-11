@@ -20,6 +20,7 @@ class ClientSeeder extends Seeder
             'site' => 'site.com',
             'vk' => 'vk.com',
             'birth_day' => '1681219268',
+            'created_at' => date("Y-m-d H:i:s"),
         ]);
     }
 }
