@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RolesController;
-use App\Http\Middleware\UserRoleMiddleware;
-
+use App\Http\Controllers\DepartmentController;
 
 Route::get('users', [UserController::class, 'index'])->middleware('user-role:User');
 Route::get('users/{id}', [UserController::class, 'show'] )->middleware('user-role:User');
@@ -29,4 +28,8 @@ Route::controller(RolesController::class)->group(function () {
     Route::get('roles/{id}', 'show')->middleware('user-role:Admin');
     Route::post('roles/{id}', 'attach')->middleware('user-role:Manager');
     Route::put('roles/{id}', 'detach')->middleware('user-role:Manager');
+});
+
+Route::controller(DepartmentController::class)->group(function () {
+    Route::get('departments', 'index');
 });
