@@ -17,6 +17,13 @@ class UserSeeder extends Seeder
             'created_at' => date("Y-m-d H:i:s"),
         ]);
 
+        DB::table('users')->insert([
+            'login' => 'User Name',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('password'),
+            'created_at' => date("Y-m-d H:i:s"),
+        ]);
+
         DB::table('user_role')->insert([
             'user_id' => '1',
             'role_id' => '1',

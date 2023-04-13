@@ -3,7 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RolesController;
+use App\Http\Controllers\departmentsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ClientsController;
 
@@ -33,8 +33,15 @@ Route::controller(RolesController::class)->group(function () {
 
 Route::controller(DepartmentController::class)->group(function () {
     Route::get('departments', 'index');
+    Route::post('departments/{id}', 'attach');
+    Route::put('departments/{id}', 'detach');
 });
 
 Route::controller(ClientsController::class)->group(function () {
     Route::get('clients', 'index');
+    Route::get('clients/department/{id}', 'getByDepartment');
+    Route::get('clients/{id}', 'show');
+    Route::post('clients', 'store');
+    Route::put('clients/{id}', 'update');
+    Route::delete('clients/{id}', 'delete');
 });

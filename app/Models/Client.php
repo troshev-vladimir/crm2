@@ -17,6 +17,8 @@ class Client extends Model
         'comment',
         'phone',
         'phone_add',
+        'division_id',
+        'user_id'
     ];
 
     protected $dates = [
@@ -24,6 +26,16 @@ class Client extends Model
         'updated_at',
         'birth_day'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function division()
+    {
+        return $this->belongsTo(Division::class);
+    }
 
     public function department()
     {

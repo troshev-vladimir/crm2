@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('division_id')->constrained('divisions');
-            $table->foreignId('user_id')->constrained('users');
+            
+            $table->unsignedBigInteger('division_id');
+            $table->foreign('division_id')->references('id')->on('divisions');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            
             $table->string('email');
             $table->string('name');
             $table->string('phone');

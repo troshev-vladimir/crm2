@@ -13,4 +13,9 @@ class Department extends Model
         'name',
         'city',
     ];
+
+    public function divisions()
+    {
+        return $this->hasMany(Division::class);
+    }
 }

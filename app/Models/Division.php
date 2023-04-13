@@ -12,4 +12,14 @@ class Division extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function clients()
+    {
+        return $this->hasMany(Client::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

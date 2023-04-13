@@ -20,8 +20,9 @@ class ClientResource extends JsonResource
             'vk' => $this->vk,
             'birth_day' => $this->birth_day,
             // 'created_at' =>$this->created_at->format('Y.m.d'),
-            'departmentId' => $this->department['id'],
-            'departmentName' => $this->department['name']
+            'department' => $this->department,
+            'division' => $this->division,
+            'creator' => $this->user,
         ];
     }
 }

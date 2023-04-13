@@ -26,7 +26,13 @@ class UserResource extends JsonResource
                     'name' => $item->name,
                     'id' => $item->id
                 ];
-            })
+            }),
+            'departments' => $this->departments->map(function ( $item,  $key) {
+                return [
+                    'name' => $item->name,
+                    'id' => $item->id
+                ];
+            }),
         ];
     }
 }

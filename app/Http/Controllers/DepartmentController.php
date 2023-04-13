@@ -38,4 +38,34 @@ class DepartmentController extends Controller {
     public function delete($id)
     {
     }
+
+    
+    public function attach(Request $request, string $id)
+    {
+        try {
+            $this->departmentService->attachToUser($request->userId, $id);
+        } catch (err) {
+            return response()->json([
+                'message' => err
+            ], 405); 
+        }
+        return response()->json([
+            'message' => 'Успешно добавлен департнент'
+        ], 201); 
+    }
+
+    public function detach(Request $request, string $id)
+    {
+        try {
+            $this->departmentService->detachToUser($request->userId, $id);
+        } catch (err) {
+            return response()->json([
+                'message' => err
+            ], 405); 
+        }
+        return response()->json([
+            'message' => 'Успешно удален департнент'
+        ],  201); 
+    }
+
 }
