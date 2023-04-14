@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use LaravelLegends\EloquentFilter\Concerns\HasFilter;
+
 
 class Client extends Model
 {
     use HasFactory;
-
+    use HasFilter;
+    
     protected $fillable = [
         'name',
         'email',

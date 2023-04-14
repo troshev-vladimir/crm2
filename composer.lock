@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "321915d7a82ba63640f1a5a8d71e853b",
+    "content-hash": "5528f71d2d1bd83f0872d6367f2f1cc1",
     "packages": [
         {
             "name": "brick/math",
@@ -1373,6 +1373,59 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.8.1"
             },
             "time": "2023-02-15T16:40:09+00:00"
+        },
+        {
+            "name": "laravellegends/eloquent-filter",
+            "version": "3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelLegends/eloquent-filter.git",
+                "reference": "bd04756222d4c548d37b3d5d1a3633b233883592"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelLegends/eloquent-filter/zipball/bd04756222d4c548d37b3d5d1a3633b233883592",
+                "reference": "bd04756222d4c548d37b3d5d1a3633b233883592",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0 || ^5.0 || ^6.0 || ^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaravelLegends\\EloquentFilter\\Providers\\FilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaravelLegends\\EloquentFilter\\": "src/eloquent-filter/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wallace Maxters",
+                    "email": "wallacemaxters@gmail.com"
+                }
+            ],
+            "description": "A simple Eloquent filter to make easy API filtering",
+            "keywords": [
+                "eloquent",
+                "filter",
+                "laravel",
+                "search"
+            ],
+            "support": {
+                "issues": "https://github.com/LaravelLegends/eloquent-filter/issues",
+                "source": "https://github.com/LaravelLegends/eloquent-filter/tree/3.0.4"
+            },
+            "time": "2022-07-13T20:43:38+00:00"
         },
         {
             "name": "lcobucci/clock",
