@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\departmentsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\RolesController;
 
 Route::get('users', [UserController::class, 'index'])->middleware('user-role:User');
 Route::get('users/{id}', [UserController::class, 'show'] )->middleware('user-role:User');
