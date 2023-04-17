@@ -38,5 +38,20 @@ class UserSeeder extends Seeder
             'user_id' => '1',
             'role_id' => '3',
         ]);
+
+        DB::table('department_user')->insert([
+            'user_id' => '1',
+            'department_id' => '1',
+        ]);
+
+        DB::table('department_user')->insert([
+            'user_id' => '2',
+            'department_id' => '2',
+        ]);
+
+        DB::table('department_user')->insert([
+            'user_id' => '1',
+            'department_id' => '2',
+        ]);
     }
 }

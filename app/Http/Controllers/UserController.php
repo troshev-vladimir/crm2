@@ -39,9 +39,9 @@ class UserController extends Controller {
         if ($request->filled('roles')) {
             $role_id = $request->query('roles');
             $users = User::leftJoin('user_role', 'user_role.user_id', '=', 'users.id' )
-            ->select('users.*')
-            ->where('user_role.role_id', $role_id )
-            ->groupBy('users.login');
+              ->select('users.*')
+              ->where('user_role.role_id', $role_id )
+              ->groupBy('users.login');
         }
 
         //->orderBy('position')

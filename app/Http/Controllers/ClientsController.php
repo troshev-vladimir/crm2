@@ -15,6 +15,7 @@ class ClientsController extends Controller
 {
     public function __construct(Type $var = null)
     {
+        $this->middleware('auth:api');
         $this->service = new ClientService();
     }
 
