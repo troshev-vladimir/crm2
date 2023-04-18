@@ -32,7 +32,7 @@ class ClientService
             'site' => $request->site,
             'vk' => $request->vk,
             'birth_day' => $request->birth_day,
-            'division_id' => $request->divisionId,
+            'division_id' => $request->division_id,
             'user_id' => $request->userId
         ]);
 

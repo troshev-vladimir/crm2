@@ -30,7 +30,8 @@ class UserResource extends JsonResource
             'departments' => $this->departments->map(function ( $item,  $key) {
                 return [
                     'name' => $item->name,
-                    'id' => $item->id
+                    'id' => $item->id,
+                    'divisions' => $item->divisions
                 ];
             }),
         ];
