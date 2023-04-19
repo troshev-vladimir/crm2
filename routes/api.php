@@ -39,8 +39,8 @@ Route::controller(DepartmentController::class)->group(function () {
 });
 
 Route::controller(ClientsController::class)->group(function () {
-    Route::get('clients', 'index');
-    Route::get('clients/department/{id}', 'getByDepartment')->middleware('department');
+    Route::get('clients', 'index')->middleware('department');
+    // Route::get('clients/department/{id}', 'getByDepartment')
     Route::get('clients/{id}', 'show');
     Route::post('clients', 'store');
     Route::put('clients/{id}', 'update');

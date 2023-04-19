@@ -13,6 +13,16 @@ class ClientFilter extends QueryFilter
         $this->builder->where('division_id', $id);
     }
 
+    public function department_id(string $id)
+    {
+        $this->builder->whereRelation('division', function (Builder $query) use ($id) {
+            $query->whereRelation('department', function (Builder $query) use ($id) {
+                $query->where('id', $id);
+            });
+        })->get();
+    }
+
+
     public function name(string $name)
     {
         $words = array_filter(explode(' ', $name));

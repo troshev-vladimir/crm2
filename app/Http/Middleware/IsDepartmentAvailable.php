@@ -19,7 +19,12 @@ class IsDepartmentAvailable
     public function handle(Request $request, Closure $next): Response
     { 
         $response = $next($request);
-        $current_department = +$request->route()->parameters()['id'];
+        
+        if (!$request->filled('page')) {
+            $next($request);
+        }
+
+        $current_department = +$request->query('department_id');
         $user_id = auth()->user()->id;
 
         $user = new UserResource(User::find($user_id));
