@@ -3,13 +3,14 @@
 namespace App\Http\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
+use App\Services\DepartmentService;
 
-class PostFilter extends QueryFilter
+class ClientFilter extends QueryFilter
 {
  
-    public function status(string $status)
+    public function division_id(string $id)
     {
-        $this->builder->where('post_status', strtolower($status));
+        $this->builder->where('division_id', $id);
     }
 
     public function name(string $name)

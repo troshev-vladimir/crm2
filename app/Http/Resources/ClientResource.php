@@ -10,7 +10,7 @@ class ClientResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        JsonResource::withoutWrapping();
+        // JsonResource::withoutWrapping();
         return [
             'email' => $this->email,
             'name' => $this->name,

@@ -9,7 +9,7 @@ use App\Models\Client;
 use App\Models\Division;
 use App\Services\ClientService;
 use App\Http\Requests\StoreClientsRequest;
-use App\Http\Filters\PostFilter;
+use App\Http\Filters\ClientFilter;
 
 class ClientsController extends Controller
 {
@@ -19,15 +19,15 @@ class ClientsController extends Controller
         $this->service = new ClientService();
     }
 
-    public function index(PostFilter $filter)
+    public function index(ClientFilter $filter)
     {
-        $clients = Client::filter($filter)->limit(10)->get();
+        $clients = Client::filter($filter)->paginate();
         return new ClientCollection($clients);
     }
 
     public function getByDepartment($departmentId)
     {
-        return $this->service->getClientsByDepartment($departmentId);
+        return $this->service->getClientsByDepartment($departmentId)[0];
     }
     
     public function store(StoreClientsRequest $request)

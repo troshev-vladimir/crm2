@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use LaravelLegends\EloquentFilter\Concerns\HasFilter;
+// use LaravelLegends\EloquentFilter\Concerns\HasFilter;
 use App\Http\Filters\Filterable;
 
 class Client extends Model
