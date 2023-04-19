@@ -16,6 +16,11 @@ class DivisionSeeder extends Seeder
         ]);
 
         DB::table('divisions')->insert([
+            'name' => 'Дополнительный отдел Русского радио',
+            'department_id' => '1',
+        ]);
+
+        DB::table('divisions')->insert([
             'name' => 'Основной отдел Мария Fm',
             'department_id' => '2',
         ]);
