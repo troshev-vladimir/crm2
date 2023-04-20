@@ -21,13 +21,21 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
-        $currentUser = DB::table('users')
-        ->where('email', $request->email)
-        ->leftJoin('user_role', 'users.id', '=', 'user_role.user_id')
-        ->leftJoin('roles', 'role_id', '=', 'roles.id')
-        // ->groupBy('login')
-        ->get();
 
+        $currentUser = DB::table('users')
+            ->where('email', $request->email)
+            ->leftJoin('user_role', 'users.id', '=', 'user_role.user_id')
+            ->leftJoin('roles', 'role_id', '=', 'roles.id')
+            // ->groupBy('login')
+            ->get();
+
+        if (!count($currentUser)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Пользователя с таким email нет',
+            ], 404);
+        }
+        
         $userRoles;
         foreach (json_decode($currentUser, true) as $user) {
             $userRoles[] = $user['name'];
@@ -38,8 +46,8 @@ class AuthController extends Controller
         if (!$token) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+                'message' => 'Пароль не подходит',
+            ], 403);
         }
 
 
