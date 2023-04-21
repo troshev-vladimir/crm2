@@ -20,8 +20,9 @@ class ClientsController extends Controller
     }
 
     public function index(ClientFilter $filter)
-    {
-        $clients = Client::filter($filter)->paginate();
+    {   
+        $per_page = $filter->query()['per_page'] ?? 10;
+        $clients = Client::filter($filter)->paginate($per_page);
         return new ClientCollection($clients);
     }
 

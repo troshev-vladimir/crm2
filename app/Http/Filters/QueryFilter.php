@@ -39,6 +39,11 @@ abstract class QueryFilter
         }
     }
 
+    public function query()
+    {
+        return $this->request;
+    }
+
     /**
      * @return array
      */

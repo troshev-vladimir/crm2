@@ -8,6 +8,11 @@ use App\Services\DepartmentService;
 class ClientFilter extends QueryFilter
 {
  
+    public function per_page(string $per_page)
+    {
+        $per_page;
+    }
+
     public function division_id(string $id)
     {
         $this->builder->where('division_id', $id);
