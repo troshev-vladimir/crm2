@@ -8,6 +8,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\SaleController;
 
 Route::get('users', [UserController::class, 'index'])->middleware('user-role:User');
 Route::get('users/{id}', [UserController::class, 'show'] )->middleware('user-role:User');
@@ -17,7 +18,7 @@ Route::delete('users/{id}', [UserController::class, 'delete'] )->middleware('use
 
 // Route::middleware(['user-role:user'])->group(function()
 // {
-   
+
 // });
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
@@ -54,4 +55,12 @@ Route::controller(EventController::class)->group(function () {
     Route::post('events', 'store');
     Route::put('events/{id}', 'update');
     Route::delete('events/{id}', 'delete');
+});
+
+Route::controller(SaleController::class)->group(function () {
+    Route::get('sales', 'index');
+    Route::get('sales/{id}', 'show');
+    Route::post('sales', 'store');
+    Route::put('sales/{id}', 'update');
+    Route::delete('sales/{id}', 'delete');
 });

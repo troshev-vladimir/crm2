@@ -12,4 +12,9 @@ class SalesType extends Model
     protected $fillable = [
         'title',
     ];
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
 }

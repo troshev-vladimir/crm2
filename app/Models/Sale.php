@@ -4,17 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Filters\Filterable;
 
 class Sale extends Model
 {
     use HasFactory;
+    use Filterable;
 
     protected $fillable = [
-        'title',
         'type_id',
         'client_id',
+        'user_id',
+        'smi_id',
         'paid',
-        '1c_id',
+        'id_1c',
         'sale_items'
     ];
 
@@ -26,4 +29,24 @@ class Sale extends Model
         'start', // рекламная компания
         'end'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(SalesType::class);
+    }
+
+    public function smi()
+    {
+        return $this->belongsTo(Smi::class);
+    }
 }

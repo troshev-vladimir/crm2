@@ -12,7 +12,7 @@ class Client extends Model
     use HasFactory;
     // use HasFilter;
     use Filterable;
-    
+
     protected $fillable = [
         'name',
         'email',
@@ -54,5 +54,10 @@ class Client extends Model
     public function events()
     {
         return $this->hasMany('App\Models\Events');
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
     }
 }

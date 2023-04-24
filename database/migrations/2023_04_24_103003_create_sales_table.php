@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    // php artisan db:seed --class=
     public function up(): void
     {
         Schema::create('sales', function (Blueprint $table) {
@@ -18,15 +16,25 @@ return new class extends Migration
             $table->boolean('paid');
             $table->date('start');
             $table->date('end');
-            $table->string();
-            $table->integer('1c_id');
+            // $table->string();
+            $table->integer('id_1c');
             $table->json('sale_items');
+
             // $table->foreignId('legal_id')->constrained('legals');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('client_id')->constrained('clients');
-            $table->foreignId('agent_id')->constrained('agents');
-            $table->foreignId('type_id')->constrained('sales_types');
-            $table->foreignId('smi_id')->constrained('smis');
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients');
+
+            $table->unsignedBigInteger('type_id');
+            $table->foreign('type_id')->references('id')->on('sales_types');
+
+            $table->unsignedBigInteger('smi_id');
+            $table->foreign('smi_id')->references('id')->on('smis');
+
+            // $table->foreignId('agent_id')->constrained('agents');
 
             $table->timestamps();
         });

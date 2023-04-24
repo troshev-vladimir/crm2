@@ -10,6 +10,23 @@ class EventsSeeder extends Seeder
 {
     public function run(): void
     {
+
+        DB::table('event_types')->insert([
+            'active' => 'true',
+            'title' => 'Звонок',
+        ]);
+
+        DB::table('event_types')->insert([
+            'active' => 'true',
+            'title' => 'Холодный визит',
+        ]);
+
+        DB::table('event_types')->insert([
+            'active' => 'false',
+            'title' => 'Какой-то тип',
+        ]);
+
+
         DB::table('events')->insert([
             'fulfilled_date' => '2023-04-01',
             'title' => 'Сделать звонок туда то',
