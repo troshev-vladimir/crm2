@@ -50,4 +50,9 @@ class Client extends Model
             'id', //Foreign key on the Department table
         );
     }
+
+    public function events()
+    {
+        return $this->hasMany('App\Models\Events');
+    }
 }

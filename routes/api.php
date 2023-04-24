@@ -7,6 +7,7 @@ use App\Http\Controllers\departmentsController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\EventController;
 
 Route::get('users', [UserController::class, 'index'])->middleware('user-role:User');
 Route::get('users/{id}', [UserController::class, 'show'] )->middleware('user-role:User');
@@ -45,4 +46,12 @@ Route::controller(ClientsController::class)->group(function () {
     Route::post('clients', 'store');
     Route::put('clients/{id}', 'update');
     Route::delete('clients/{id}', 'delete');
+});
+
+Route::controller(EventController::class)->group(function () {
+    Route::get('events', 'index');
+    Route::get('events/{id}', 'show');
+    Route::post('events', 'store');
+    Route::put('events/{id}', 'update');
+    Route::delete('events/{id}', 'delete');
 });

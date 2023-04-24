@@ -23,7 +23,6 @@ class ClientService
 
     public function createClient(Request $request)
     {
-        // Create user
         $client = Client::create([
             'name' => $request->name,
             'email' => $request->email,
