@@ -50,11 +50,13 @@ Route::controller(ClientsController::class)->group(function () {
 });
 
 Route::controller(EventController::class)->group(function () {
+    Route::get('events/archive/', 'getArchive');
     Route::get('events', 'index');
     Route::get('events/{id}', 'show');
     Route::post('events', 'store');
     Route::put('events/{id}', 'update');
     Route::delete('events/{id}', 'delete');
+    Route::post('events/{id}/archive', 'archive');
 });
 
 Route::controller(SaleController::class)->group(function () {

@@ -16,6 +16,12 @@ return new class extends Migration
             $table->boolean('paid');
             $table->date('start');
             $table->date('end');
+            $table->integer('summa')->default(0);
+            $table->integer('1c_ref_key')->default(null);
+            $table->integer('1c_dogovor_key')->default(null);
+            $table->integer('1c_kontragent_key')->default(null);
+            $table->boolean('locked')->default(false);
+            
             // $table->string();
             $table->integer('id_1c');
             $table->json('sale_items');

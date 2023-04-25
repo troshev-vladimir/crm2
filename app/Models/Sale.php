@@ -18,16 +18,18 @@ class Sale extends Model
         'smi_id',
         'paid',
         'id_1c',
-        'sale_items'
-    ];
-
-    protected $dates = [
+        'sale_items',
         'created_at',
         'updated_at',
         'placement_date',
         'payed_date',
         'start', // рекламная компания
-        'end'
+        'end',
+        'summa',
+        'locked',
+        // '1c_ref_key',
+        // '1c_kontragent_key',
+        // '1c_dogovor_key',
     ];
 
     public function user()

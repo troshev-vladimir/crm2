@@ -15,7 +15,7 @@ class EventResource extends JsonResource
             'type' => $this->type,
             'client' => $this->client,
             'appointment_date' => $this->appointment_date,
-            'fulfilled_date' => $this->fulfilled_date,
+            'fulfilled_date' =>  $this->fulfilled_date == '0000-00-00' ? false : $this->fulfilled_date,
         ];
     }
 }

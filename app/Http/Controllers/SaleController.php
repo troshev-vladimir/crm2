@@ -28,23 +28,23 @@ class SaleController extends Controller
 
     public function show($id)
     {
-       return new EventResource(Events::find($id));
+      return new SaleResource(Sale::find($id));
     }
 
     public function store(Request $request)
     {
       //StoreSalesRequest
       // $validated = $request->validated();
-      return $this->saleService->createSale($request);
+      
+      $created = $this->saleService->createSale($request);
+      return new SaleResource($created);
     }
 
-    public function update(StoreEventsRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $validated = $request->validated();
-
-        $event = Events::findOrFail($id);
-        $event->update($request->all());
-        return $event;
+        // $validated = $request->validated();
+        return $this->saleService->updateSale($request, $id);
+        
     }
 
     public function delete($id)
