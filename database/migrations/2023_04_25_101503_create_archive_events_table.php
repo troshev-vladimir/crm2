@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('archive_events', function (Blueprint $table) {
             $table->id();
 
             $table->string('title');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('type_id')->references('id')->on('event_types');
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
-
+            
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('archive_events');
     }
 };

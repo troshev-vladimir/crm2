@@ -22,7 +22,12 @@ class Sale extends Model
         'placement_date',
         'payed_date',
         'start', // рекламная компания
-        'end'
+        'end',
+        'summa',
+        'locked',
+        // '1c_ref_key',
+        // '1c_kontragent_key',
+        // '1c_dogovor_key',
     ];
 
     protected $dates = [

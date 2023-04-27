@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\EventService;
 use App\Models\Events;
 use App\Models\EventTypes;
+use App\Models\ArchiveEvent;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
 use App\Http\Requests\StoreEventsRequest;
@@ -57,5 +58,18 @@ class EventController extends Controller
     {
         $event = new EventResource(Events::findOrFail($id));
         $event->delete();
+    }
+
+    public function archive($id)
+    {
+      return $this->eventService->archiveEvent($id);
+    }
+
+    public function getArchive(EventFilter $filter)
+    {
+      $per_page = $filter->query()['per_page'] ?? 10;
+      $events = ArchiveEvent::filter($filter)->paginate($per_page);
+
+      return new EventCollection($events);
     }
 }

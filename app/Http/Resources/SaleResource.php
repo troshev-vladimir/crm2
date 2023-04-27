@@ -29,6 +29,8 @@ class SaleResource extends JsonResource
             // 'agent' => $this->agents,
             'type' => $this->type,
             'smi' => $this->smi,
+            'summa' => $this->summa,
+            'locked' => (bool)$this->locked
         ];
     }
 }

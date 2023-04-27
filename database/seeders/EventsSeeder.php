@@ -28,7 +28,6 @@ class EventsSeeder extends Seeder
 
 
         DB::table('events')->insert([
-            'fulfilled_date' => '2023-04-01',
             'title' => 'Сделать звонок туда то',
             'appointment_date' => '2023-04-25',
             'type_id' => 1,
