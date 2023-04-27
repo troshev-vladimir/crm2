@@ -17,7 +17,6 @@ class SaleService
 
     public function createSale(Request $request)
     {
-        $summ = getSumma($request->saleItems);
         $event = Sale::create([
             "placement_date" => $this->dateService->createDate($request->placementDate),
             "payed_date" => $this->dateService->createDate($request->payedDate),
@@ -29,7 +28,7 @@ class SaleService
             "type_id" => $request->type,
             "user_id" => $request->userId,
             "client_id" => $request->client_id,
-            "summa" => $summ,
+            "summa" => getSumma($request->saleItems),
         ]);
 
         return $event;
@@ -49,10 +48,10 @@ class SaleService
             "end" => $this->dateService->createDate($request->end),
             "id_1c" => $request->id_1c,
             "sale_items" => json_encode($request->saleItems),
-            "smi_id" => $request->smiId,
-            "type_id" => $request->typeId,
-            "user_id" => $request->userId,
-            "client_id" => $request->clientId,
+            "smi_id" => $request->smi,
+            "type_id" => $request->type,
+            "user_id" => $request->user,
+            "client_id" => $request->client,
             "summa" => $summ,
             'locked' => $request->locked,
         ]);
