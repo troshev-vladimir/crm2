@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services;
- 
+
 use App\Models\Events;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,19 +12,19 @@ class EventService
 
     public function __construct(Type $var = null)
     {
-       
+
     }
 
     public function createEvent(Request $request)
     {
         $event = Events::create([
-            'fulfilled_date' => $request->fulfilled_date,
+            'fulfilled_date' => null,
             'appointment_date'=> $request->appointment_date,
             'title' => $request->title,
-            'type_id' => $request->typeId,
-            'client_id' => $request->clientId
+            'type_id' => $request->type_id,
+            'client_id' => $request->client_id
         ]);
- 
+
         return $event;
     }
 

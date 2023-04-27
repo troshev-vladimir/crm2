@@ -14,14 +14,14 @@ class Events extends Model
     protected $fillable = [
         'title',
         'type_id',
-        'client_id'
+        'client_id',
+        'fulfilled_date',
+        'appointment_date',
     ];
 
     protected $dates = [
         'created_at',
         'updated_at',
-        'fulfilled_date',
-        'appointment_date',
     ];
 
     public function type()

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\EventService;
 use App\Models\Events;
+use App\Models\EventTypes;
 use App\Http\Resources\EventResource;
 use App\Http\Resources\EventCollection;
 use App\Http\Requests\StoreEventsRequest;
@@ -23,28 +24,33 @@ class EventController extends Controller
 
       $per_page = $filter->query()['per_page'] ?? 10;
       $events = Events::filter($filter)->paginate($per_page);
-      
+
       return new EventCollection($events);
     }
 
     public function show($id)
     {
-       return new EventResource(Events::find($id));
+      return new EventResource(Events::find($id));
+    }
+
+    public function types()
+    {
+      return EventTypes::get();
     }
 
     public function store(StoreEventsRequest $request)
-    {   
+    {
       $validated = $request->validated();
       return $this->eventService->createEvent($request);
     }
 
     public function update(StoreEventsRequest $request, $id)
     {
-        $validated = $request->validated();
+      $validated = $request->validated();
 
-        $event = Events::findOrFail($id);
-        $event->update($request->all());
-        return $event;
+      $event = Events::findOrFail($id);
+      $event->update($request->all());
+      return $event;
     }
 
     public function delete($id)

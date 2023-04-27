@@ -18,16 +18,16 @@ class Sale extends Model
         'smi_id',
         'paid',
         'id_1c',
-        'sale_items'
+        'sale_items',
+        'placement_date',
+        'payed_date',
+        'start', // рекламная компания
+        'end'
     ];
 
     protected $dates = [
         'created_at',
         'updated_at',
-        'placement_date',
-        'payed_date',
-        'start', // рекламная компания
-        'end'
     ];
 
     public function user()

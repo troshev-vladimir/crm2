@@ -52,6 +52,7 @@ Route::controller(ClientsController::class)->group(function () {
 Route::controller(EventController::class)->group(function () {
     Route::get('events', 'index');
     Route::get('events/{id}', 'show');
+    Route::get('event-types', 'types');
     Route::post('events', 'store');
     Route::put('events/{id}', 'update');
     Route::delete('events/{id}', 'delete');
@@ -60,6 +61,8 @@ Route::controller(EventController::class)->group(function () {
 Route::controller(SaleController::class)->group(function () {
     Route::get('sales', 'index');
     Route::get('sales/{id}', 'show');
+    Route::get('sales-types', 'types');
+    Route::get('smi', 'smi');
     Route::post('sales', 'store');
     Route::put('sales/{id}', 'update');
     Route::delete('sales/{id}', 'delete');

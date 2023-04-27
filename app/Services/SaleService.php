@@ -24,10 +24,10 @@ class SaleService
             "end" => $request->end,
             "id_1c" => $request->id_1c,
             "sale_items" => json_encode($request->saleItems),
-            "smi_id" => $request->smiId,
-            "type_id" => $request->typeId,
+            "smi_id" => $request->smi_id,
+            "type_id" => $request->type,
             "user_id" => $request->userId,
-            "client_id" => $request->clientId
+            "client_id" => $request->client_id
         ]);
 
         return $event;

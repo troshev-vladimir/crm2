@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\SaleService;
 use App\Models\Sale;
+use App\Models\Smi;
+use App\Models\SalesType;
 use App\Http\Resources\SaleResource;
 use App\Http\Resources\SaleCollection;
 use App\Http\Requests\StoreSaleRequest;
@@ -31,6 +33,16 @@ class SaleController extends Controller
        return new EventResource(Events::find($id));
     }
 
+    public function types()
+    {
+       return SalesType::all();
+    }
+
+    public function smi()
+    {
+       return Smi::all();
+    }
+
     public function store(Request $request)
     {
       //StoreSalesRequest
@@ -38,7 +50,7 @@ class SaleController extends Controller
       return $this->saleService->createSale($request);
     }
 
-    public function update(StoreEventsRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $validated = $request->validated();
 
