@@ -24,6 +24,7 @@ class Sale extends Model
         'start', // рекламная компания
         'end',
         'summa',
+        'title',
         'locked',
         // '1c_ref_key',
         // '1c_kontragent_key',

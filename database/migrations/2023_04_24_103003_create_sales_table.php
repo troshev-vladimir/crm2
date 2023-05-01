@@ -11,6 +11,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->date('placement_date');
             $table->date('payed_date');
             $table->boolean('paid');
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->integer('1c_dogovor_key')->default(null);
             $table->integer('1c_kontragent_key')->default(null);
             $table->boolean('locked')->default(false);
-            
+
             // $table->string();
             $table->integer('id_1c');
             $table->json('sale_items');

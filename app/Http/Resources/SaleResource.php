@@ -16,6 +16,7 @@ class SaleResource extends JsonResource
     {
         // JsonResource::withoutWrapping();
         return [
+            //response -> model
             'id' => $this->id,
             'title' => $this->title,
             'placementDate' =>$this->placement_date,

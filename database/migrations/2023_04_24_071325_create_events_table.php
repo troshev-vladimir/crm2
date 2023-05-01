@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->date('fulfilled_date')->default(false);
+            $table->date('fulfilled_date')->nullable();
             $table->date('appointment_date');
 
             $table->unsignedBigInteger('type_id');

@@ -18,6 +18,7 @@ class SaleService
     public function createSale(Request $request)
     {
         $event = Sale::create([
+            //model -> request
             "placement_date" => $this->dateService->createDate($request->placementDate),
             "payed_date" => $this->dateService->createDate($request->payedDate),
             "start" => $this->dateService->createDate($request->start),
@@ -25,10 +26,11 @@ class SaleService
             "id_1c" => $request->id_1c,
             "sale_items" => json_encode($request->saleItems),
             "smi_id" => $request->smi_id,
-            "type_id" => $request->type,
-            "user_id" => $request->userId,
+            "type_id" => $request->type_id,
             "client_id" => $request->client_id,
             "summa" => getSumma($request->saleItems),
+            "title" => $request->title,
+            "user_id" => $request->user_id,
         ]);
 
         return $event;
@@ -48,12 +50,13 @@ class SaleService
             "end" => $this->dateService->createDate($request->end),
             "id_1c" => $request->id_1c,
             "sale_items" => json_encode($request->saleItems),
-            "smi_id" => $request->smi,
-            "type_id" => $request->type,
-            "user_id" => $request->user,
-            "client_id" => $request->client,
+            "smi_id" => $request->smi_id,
+            "type_id" => $request->type_id,
+            "user_id" => $request->user_id,
+            "client_id" => $request->client_id,
             "summa" => $summ,
             'locked' => $request->locked,
+            "title" => $request->title,
         ]);
         return $sale;
     }

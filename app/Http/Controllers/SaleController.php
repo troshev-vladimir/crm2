@@ -47,7 +47,7 @@ class SaleController extends Controller
     {
       //StoreSalesRequest
       // $validated = $request->validated();
-      
+
       $created = $this->saleService->createSale($request);
       return new SaleResource($created);
     }
@@ -56,12 +56,12 @@ class SaleController extends Controller
     {
         // $validated = $request->validated();
         return $this->saleService->updateSale($request, $id);
-        
+
     }
 
     public function delete($id)
     {
-        $event = new EventResource(Events::findOrFail($id));
+        $event = new SaleResource(Sale::findOrFail($id));
         $event->delete();
     }
 }

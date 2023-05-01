@@ -20,7 +20,7 @@ class ClientsController extends Controller
     }
 
     public function index(ClientFilter $filter)
-    {   
+    {
         $per_page = $filter->query()['per_page'] ?? 10;
         $clients = Client::filter($filter)->paginate($per_page);
         return new ClientCollection($clients);
@@ -30,7 +30,7 @@ class ClientsController extends Controller
     {
         return $this->service->getClientsByDepartment($departmentId)[0];
     }
-    
+
     public function store(StoreClientsRequest $request)
     {
         $validated = $request->validated();
