@@ -6,12 +6,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Services\RolesService;
 
 class AuthController extends Controller
 {
 
     public function __construct()
     {
+        $this->rolesService = new RolesService();
         $this->middleware('auth:api', ['except' => ['login','register', 'refresh']]);
     }
 
@@ -35,14 +37,14 @@ class AuthController extends Controller
                 'message' => 'Пользователя с таким email нет',
             ], 404);
         }
-        
+
         $userRoles;
         foreach (json_decode($currentUser, true) as $user) {
             $userRoles[] = $user['name'];
         }
 
         $credentials = $request->only('email', 'password');
-        $token = auth()->claims(['roles' => $userRoles])->attempt($credentials); 
+        $token = auth()->claims(['roles' => $userRoles])->attempt($credentials);
         if (!$token) {
             return response()->json([
                 'status' => 'error',
@@ -66,7 +68,7 @@ class AuthController extends Controller
     public function register(Request $request){
         $request->validate([
             'login' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255', //unique:users
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string',
         ]);
 
@@ -76,11 +78,24 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = auth()->login($user);
+        $this->rolesService->attachRole($user['id'], 1);
+
+        $updatedUser = User::find($user['id']);
+        $currentUser = DB::table('users')
+            ->where('email', $user['email'])
+            ->leftJoin('user_role', 'users.id', '=', 'user_role.user_id')
+            ->leftJoin('roles', 'role_id', '=', 'roles.id')
+            // ->groupBy('login')
+            ->get();
+        $userRoles;
+        foreach (json_decode($currentUser, true) as $user) {
+            $userRoles[] = $user['name'];
+        }
+        $token = auth()->claims(['roles' => $userRoles])->login($updatedUser);
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
-            'user' => $user,
+            'user' => $currentUser,
             'authorisation' => [
                 'token' => $token,
                 'type' => 'bearer',

@@ -50,8 +50,8 @@ Route::controller(ClientsController::class)->group(function () {
 });
 
 Route::controller(EventController::class)->group(function () {
-    Route::get('events/archive/', 'getArchive');
-    Route::get('events', 'index');
+    Route::get('events/archive/', 'getArchive')->middleware('department');
+    Route::get('events', 'index')->middleware('department');
     Route::get('events/{id}', 'show');
     Route::get('event-types', 'types');
     Route::post('events', 'store');
@@ -61,7 +61,7 @@ Route::controller(EventController::class)->group(function () {
 });
 
 Route::controller(SaleController::class)->group(function () {
-    Route::get('sales', 'index');
+    Route::get('sales', 'index')->middleware('department');
     Route::get('sales/{id}', 'show');
     Route::get('sales-types', 'types');
     Route::get('smi', 'smi');

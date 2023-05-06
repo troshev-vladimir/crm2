@@ -28,9 +28,9 @@ class UserController extends Controller {
         if ($request->filled('per_page')) {
             $per_page = $request->query('per_page');
         }
-            
+
         $users = User::limit($per_page)->offset($page * $per_page);
-        
+
         if ($request->filled('login')) {
             $login = $request->get('login');
             $users->where('login', 'like', "%$login%");
@@ -47,7 +47,7 @@ class UserController extends Controller {
         //->orderBy('position')
         $resp = $users->get();
         return new UserCollection($resp);
-        // return new UserCollection(User::paginate()); 
+        // return new UserCollection(User::paginate());
     }
 
     public function show($id)
@@ -56,7 +56,7 @@ class UserController extends Controller {
     }
 
     public function store(Request $request)
-    {   
+    {
         // $request->validate([
         //     'login' => 'required|string|max:40',
         //     'description' => 'required|string|max:255',
