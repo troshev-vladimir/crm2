@@ -17,7 +17,7 @@ class RolesController extends Controller {
 
     public function index()
     {
-        return Role::all(); 
+        return Role::all();
     }
 
     public function show($id)
@@ -32,11 +32,11 @@ class RolesController extends Controller {
         } catch (err) {
             return response()->json([
                 'message' => err
-            ], 405); 
+            ], 405);
         }
         return response()->json([
             'message' => 'Успешно добавлена роль'
-        ], 201); 
+        ], 201);
     }
 
     public function detach(Request $request, string $id)
@@ -46,12 +46,12 @@ class RolesController extends Controller {
         } catch (err) {
             return response()->json([
                 'message' => err
-            ], 405); 
+            ], 405);
         }
         return response()->json([
             'message' => 'Успешно удалена роль'
-        ],  201); 
+        ],  201);
     }
 
-   
+
 }

@@ -21,25 +21,26 @@ class DepartmentController extends Controller {
        return new DepartmentCollection($this->departmentService->getAll());
     }
 
-    public function show($id)
+    public function userDepartments(Request $request, $userId)
     {
+        return new DepartmentCollection($this->departmentService->getByUser($userId));
     }
 
     public function store(Request $request)
-    {   
-      
+    {
+
     }
 
     public function update(Request $request, $id)
     {
-        
+
     }
 
     public function delete($id)
     {
     }
 
-    
+
     public function attach(Request $request, string $id)
     {
         try {
@@ -47,11 +48,11 @@ class DepartmentController extends Controller {
         } catch (err) {
             return response()->json([
                 'message' => err
-            ], 405); 
+            ], 405);
         }
         return response()->json([
             'message' => 'Успешно добавлен департнент'
-        ], 201); 
+        ], 201);
     }
 
     public function detach(Request $request, string $id)
@@ -61,11 +62,11 @@ class DepartmentController extends Controller {
         } catch (err) {
             return response()->json([
                 'message' => err
-            ], 405); 
+            ], 405);
         }
         return response()->json([
             'message' => 'Успешно удален департнент'
-        ],  201); 
+        ],  201);
     }
 
 }

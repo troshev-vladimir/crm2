@@ -52,7 +52,24 @@ class UserController extends Controller {
 
     public function show($id)
     {
-        return new UserResource(User::find($id));
+        $userId = auth()->user()['id'];
+        $user = User::findOrFail($userId);
+        $isManager = false;
+
+        foreach ($user->roles as $role) {
+            if ($role->name === 'Manager' || $role->name === 'Admin' ) {
+                $isManager = true;
+            }
+        }
+
+        if ($id == $userId || $isManager ) {
+            return new UserResource(User::find($id));
+        } else {
+            return response()->json([
+                'message' => 'Вы не имеете прав для промотра других пользователей'
+            ], 403);
+        }
+
     }
 
     public function store(Request $request)

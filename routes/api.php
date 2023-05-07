@@ -10,7 +10,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SaleController;
 
-Route::get('users', [UserController::class, 'index'])->middleware('user-role:User');
+Route::get('users', [UserController::class, 'index'])->middleware('user-role:Manager');
 Route::get('users/{id}', [UserController::class, 'show'] )->middleware('user-role:User');
 // Route::post('users', [UserController::class, 'store'] )->middleware('user-role:user');
 Route::put('users/{id}', [UserController::class, 'update'] )->middleware('user-role:Manager');
@@ -36,6 +36,7 @@ Route::controller(RolesController::class)->group(function () {
 
 Route::controller(DepartmentController::class)->group(function () {
     Route::get('departments', 'index');
+    Route::get('departments/{userId}', 'userDepartments');
     Route::post('departments/{id}', 'attach');
     Route::put('departments/{id}', 'detach');
 });

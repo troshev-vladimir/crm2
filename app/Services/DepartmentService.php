@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Services;
- 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Department;
-use App\Services\UserService;  
+use App\Services\UserService;
 
 class DepartmentService
 {
@@ -21,9 +21,15 @@ class DepartmentService
         return Department::find($id);
     }
 
+    public function getByUser($userId) {
+        $user = $this->userService->getUserByID($userId);
+        $userDepartments = $user['departments'];
+        return $userDepartments;
+    }
+
     public function attachToUser($userId, $departmentId) {
         $user = $this->userService->getUserByID($userId);
-        $userDepartments= $user['departments'];
+        $userDepartments = $user['departments'];
 
         $exist = false;
         foreach ($userDepartments as $userDepartment) {
