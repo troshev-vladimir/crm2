@@ -21,8 +21,18 @@ class Client extends Model
         'comment',
         'phone',
         'phone_add',
+        'address',
+        'address_add',
         'division_id',
-        'user_id'
+        'user_id',
+        'birth_day',
+        'active',
+        'federal',
+        'top',
+        'prioritet',
+
+        'activity_id',
+        'potencial_id',
     ];
 
     protected $dates = [
@@ -39,6 +49,16 @@ class Client extends Model
     public function division()
     {
         return $this->belongsTo(Division::class);
+    }
+
+    public function activity()
+    {
+        return $this->belongsTo(ClientActivity::class);
+    }
+
+    public function potencial()
+    {
+        return $this->belongsTo(ClientPotential::class);
     }
 
     public function department()
@@ -59,5 +79,9 @@ class Client extends Model
     public function sales()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    public function contacts() {
+        return $this->hasMany(ClientContact::class);
     }
 }

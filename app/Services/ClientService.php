@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services;
- 
+
 use App\Models\Client;
 use App\Models\Division;
 use App\Models\User;
@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Services\DepartmentService;
+use App\Services\ClientContactService;
 use App\Http\Resources\DepartmentResource;
 use App\Http\Resources\DepartmentCollection;
 
@@ -19,6 +20,7 @@ class ClientService
     public function __construct(Type $var = null)
     {
         $this->departmentService = new DepartmentService();
+        $this->clientContactService = new ClientContactService();
     }
 
     public function createClient(Request $request)
@@ -32,16 +34,18 @@ class ClientService
             'vk' => $request->vk,
             'birth_day' => $request->birth_day,
             'division_id' => $request->division_id,
-            'user_id' => $request->userId
+            'user_id' => $request->userId,
+            'activity_id' => $request->activity_id,
+            'potencial_id' => $request->potencial_id,
         ]);
 
- 
+        $clientContact = $this->clientContactService->createClientContact($request->contacts, $client['id']);
+
+
         // if ($request->hasFile('avatar')) {
         //     $avatar = $request->file('avatar')->store('avatars');
         //     $user->update(['avatar' => $avatar]);
         // }
-        
-       
         return $client;
     }
 

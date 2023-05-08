@@ -5,6 +5,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\PermissionResource;
+use App\Http\Resources\ClientContactCollection;
+
 
 class ClientResource extends JsonResource
 {
@@ -24,6 +26,16 @@ class ClientResource extends JsonResource
             'department' => $this->department,
             'division' => $this->division,
             'creator' => $this->user,
+
+            //Это статусы Клиента
+            'active'=> $this->active,
+            'federal'=> $this->federal,
+            'top'=> $this->top,
+            'prioritet'=> $this->prioritet,
+
+            'activity'=> $this->activity, //Это специализация Клиента
+            'potencial'=> $this->potencial,
+            'contacts'=> new ClientContactCollection($this->contacts),
         ];
     }
 }
