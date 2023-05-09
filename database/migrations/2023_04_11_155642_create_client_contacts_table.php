@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('comment');
 
             $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 
             $table->unsignedBigInteger('job_id');
             $table->foreign('job_id')->references('id')->on('client_jobs');

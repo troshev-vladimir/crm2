@@ -23,18 +23,24 @@ class ClientResource extends JsonResource
             'vk' => $this->vk,
             'birth_day' => $this->birth_day,
             // 'created_at' =>$this->created_at->format('Y.m.d'),
-            'department' => $this->department,
+            // 'department' => $this->department,
             'division' => $this->division,
             'creator' => $this->user,
+            'comment'=> $this->comment,
+            'address'=> $this->address,
+            'address_add'=> $this->address_add,
+            'user_id'=> $this->user_id,
 
             //Это статусы Клиента
-            'active'=> $this->active,
-            'federal'=> $this->federal,
-            'top'=> $this->top,
-            'prioritet'=> $this->prioritet,
+            'active'=> !!$this->active,
+            'federal'=> !!$this->federal,
+            'top'=> !!$this->top,
+            'prioritet'=> !!$this->prioritet,
 
             'activity'=> $this->activity, //Это специализация Клиента
+            'activity_id'=> $this->activity_id, // TODO: Переделать, отдавать только ID
             'potencial'=> $this->potencial,
+            'potencial_id'=> $this->potencial_id, // TODO: Переделать, отдавать только ID
             'contacts'=> new ClientContactCollection($this->contacts),
         ];
     }

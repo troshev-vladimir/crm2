@@ -35,8 +35,15 @@ class ClientService
             'birth_day' => $request->birth_day,
             'division_id' => $request->division_id,
             'user_id' => $request->userId,
-            'activity_id' => $request->activity_id,
+            'address' => $request->address,
+            'address_add' => $request->address_add,
+            'comment' => $request->comment,
             'potencial_id' => $request->potencial_id,
+            'activity_id' => $request->activity_id,
+            'active'=> $request->active,
+            'federal'=> $request->federal,
+            'top'=> $request->top,
+            'prioritet'=> $request->prioritet,
         ]);
 
         $clientContact = $this->clientContactService->createClientContact($request->contacts, $client['id']);

@@ -48,6 +48,11 @@ Route::controller(ClientsController::class)->group(function () {
     Route::post('clients', 'store');
     Route::put('clients/{id}', 'update');
     Route::delete('clients/{id}', 'delete');
+
+    Route::get('client-jobs/', 'getClientJobs');
+    Route::get('client-activity/', 'getClientActivitys');
+    Route::get('client-potential/', 'getClientPotentials');
+    Route::get('client-metadata/', 'getClientMetadata');
 });
 
 Route::controller(EventController::class)->group(function () {

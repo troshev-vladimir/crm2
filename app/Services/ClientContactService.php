@@ -15,10 +15,10 @@ class ClientContactService
             $cientContact = ClientContact::create([
                 'name' => $contact['name'],
                 'phone' => $contact['phone'],
-                'phone_add' => $contact['phoneAdd'],
+                'phone_add' => $contact['phone_add'],
                 'email' => $contact['email'],
                 'comment' => $contact['comment'],
-                'job_id' => $contact['job_id'],
+                'job_id' => $contact['job'],
                 'client_id' => $clientId,
             ]);
         }
