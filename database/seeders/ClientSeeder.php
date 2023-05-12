@@ -11,18 +11,24 @@ class ClientSeeder extends Seeder
     public function run(): void
     {
         DB::table('clients')->insert([
-            'division_id' => '1',
+            "email" => "client6@gmail.com",
+            "name" => "asd22",
+            "phone" => "89046456789",
+            "phone_add" => "89046456789",
+            "site" => "site.com",
+            "vk" => "vk.com",
+            "birth_day" => "21.2.1999",
+            "division_id" => '1',
+            "address" => "asdasd",
+            "address_add" => "asdasdasd",
+            "comment" => "ads",
+            "active" => false,
+            "federal" => false,
+            "top" => true,
+            "prioritet" => false,
+            "activity_id" => '1',
+            "potencial_id" => '2',
             'user_id' => '1',
-            'activity_id' => '1',
-            'potencial_id' => '1',
-            'email' => 'client@gmail.com',
-            'name' => 'client Russian radio',
-            'phone' => '89046456789',
-            'phone_add' => '89046456789',
-            'site' => 'site.com',
-            'vk' => 'vk.com',
-            'birth_day' => '1681219268',
-            'created_at' => date("Y-m-d H:i:s"),
         ]);
 
         DB::table('clients')->insert([

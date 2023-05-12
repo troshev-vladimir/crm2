@@ -8,7 +8,7 @@ class ClientFilter extends ModelFilter
 {
     /**
      * The rules of filter
-     * 
+     *
      * @see https://github.com/LaravelLegends/eloquent-filter#what-does-it-do
      * @return array
     */
