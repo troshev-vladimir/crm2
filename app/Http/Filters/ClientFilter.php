@@ -32,4 +32,31 @@ class ClientFilter extends QueryFilter
             }
         });
     }
+
+    public function potential(string $id)
+    {
+        $this->builder->whereRelation('potencial', function (Builder $query) use ($id) {
+            $query->where('id', $id);
+        });
+    }
+
+    public function active(string $active)
+    {
+        $this->builder->where('active', '=', $active);
+    }
+
+    public function federal(string $federal)
+    {
+        $this->builder->where('federal', '=', $federal);
+    }
+
+    public function top(string $top)
+    {
+        $this->builder->where('top', '=', $top);
+    }
+
+    public function prioritet(string $prioritet)
+    {
+        $this->builder->where('prioritet', '=', $prioritet);
+    }
 }
