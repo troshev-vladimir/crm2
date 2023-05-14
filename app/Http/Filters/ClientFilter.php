@@ -33,9 +33,23 @@ class ClientFilter extends QueryFilter
         });
     }
 
+    public function user(string $id)
+    {
+        $this->builder->whereRelation('user', function (Builder $query) use ($id) {
+            $query->where('id', $id);
+        });
+    }
+
     public function potential(string $id)
     {
         $this->builder->whereRelation('potencial', function (Builder $query) use ($id) {
+            $query->where('id', $id);
+        });
+    }
+
+    public function activity(string $id)
+    {
+        $this->builder->whereRelation('activity', function (Builder $query) use ($id) {
             $query->where('id', $id);
         });
     }
