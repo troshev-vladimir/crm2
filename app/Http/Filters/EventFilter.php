@@ -7,12 +7,6 @@ use App\Services\DepartmentService;
 
 class EventFilter extends QueryFilter
 {
-
-    public function per_page(string $per_page)
-    {
-        $per_page;
-    }
-
     public function type(string $id)
     {
         $this->builder->where('type_id', $id);
@@ -40,7 +34,7 @@ class EventFilter extends QueryFilter
 
         $this->builder->where(function (Builder $query) use ($words) {
             foreach ($words as $word) {
-                $query->where('name', 'like', "%$word%");
+                $query->where('title', 'like', "%$word%");
             }
         });
     }
