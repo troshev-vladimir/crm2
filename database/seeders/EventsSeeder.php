@@ -31,7 +31,7 @@ class EventsSeeder extends Seeder
             'title' => 'Сделать звонок туда то',
             'appointment_date' => '2023-04-25',
             'type_id' => 1,
-            'client_id' => 1,
+            'client_id' => 2,
         ]);
 
         DB::table('events')->insert([

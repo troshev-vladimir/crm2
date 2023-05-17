@@ -33,14 +33,24 @@ class SaleFilter extends QueryFilter
         $this->builder->where('client_id', $id);
     }
 
-    public function title(string $name)
+    public function title(string $title)
     {
-        $words = array_filter(explode(' ', $name));
+        $words = array_filter(explode(' ', $title));
 
         $this->builder->where(function (Builder $query) use ($words) {
             foreach ($words as $word) {
-                $query->where('name', 'like', "%$word%");
+                $query->where('title', 'like', "%$word%");
             }
         });
+    }
+
+    public function dateFrom(string $date_from)
+    {
+        $this->builder->whereDate('placement_date', '>=', $date_from);
+    }
+
+    public function dateTo(string $date_to)
+    {
+        $this->builder->whereDate('placement_date', '<=', $date_to);
     }
 }
