@@ -57,6 +57,7 @@ Route::controller(ClientsController::class)->group(function () {
 
 Route::controller(EventController::class)->group(function () {
     Route::get('events/archive/', 'getArchive')->middleware('department');
+    Route::get('events/by-client/{id}', 'getByClient');
     Route::get('events', 'index')->middleware('department');
     Route::get('events/{id}', 'show');
     Route::get('event-types', 'types');

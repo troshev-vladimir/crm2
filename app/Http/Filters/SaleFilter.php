@@ -28,10 +28,19 @@ class SaleFilter extends QueryFilter
         })->get();
     }
 
-    public function client(string $id)
+    public function division_id(string $id)
     {
-        $this->builder->where('client_id', $id);
+        $this->builder->whereRelation('client', function (Builder $query) use ($id) {
+            $query->whereRelation('division', function (Builder $query) use ($id) {
+                $query->where('id', $id);
+            });
+        })->get();
     }
+
+    // public function client(string $id)
+    // {
+    //     $this->builder->where('client_id', $id);
+    // }
 
     public function title(string $title)
     {
@@ -44,13 +53,27 @@ class SaleFilter extends QueryFilter
         });
     }
 
-    public function dateFrom(string $date_from)
-    {
+    public function createdFrom(string $date_from){
+        $this->builder->whereDate('created_at', '>=', $date_from);
+    }
+
+    public function createdTo(string $date_to){
+        $this->builder->whereDate('created_at', '<=', $date_to);
+    }
+
+    public function placementFrom(string $date_from){
         $this->builder->whereDate('placement_date', '>=', $date_from);
     }
 
-    public function dateTo(string $date_to)
-    {
+    public function placementTo(string $date_to){
         $this->builder->whereDate('placement_date', '<=', $date_to);
+    }
+
+    public function payedFrom(string $date_from){
+        $this->builder->whereDate('payed_date', '>=', $date_from);
+    }
+
+    public function payedTo(string $date_to){
+        $this->builder->whereDate('payed_date', '<=', $date_to);
     }
 }

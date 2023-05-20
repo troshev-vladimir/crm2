@@ -21,6 +21,7 @@ class ClientService
     {
         $this->departmentService = new DepartmentService();
         $this->clientContactService = new ClientContactService();
+        $this->clientLegalService = new ClientLegalService();
     }
 
     public function createClient(Request $request)
@@ -47,6 +48,7 @@ class ClientService
         ]);
 
         $clientContact = $this->clientContactService->createClientContact($request->contacts, $client['id']);
+        $clientLegel = $this->clientLegalService->createClientLegal($request->legals, $client['id']);
 
 
         // if ($request->hasFile('avatar')) {

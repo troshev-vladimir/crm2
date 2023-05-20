@@ -42,6 +42,7 @@ class ClientResource extends JsonResource
             'potencial'=> $this->potencial,
             'potencial_id'=> $this->potencial_id, // TODO: Переделать, отдавать только ID
             'contacts'=> new ClientContactCollection($this->contacts),
+            'legals'=> $this->legals,
         ];
     }
 }

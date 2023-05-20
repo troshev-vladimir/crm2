@@ -72,4 +72,9 @@ class EventController extends Controller
 
       return new EventCollection($events);
     }
+
+    public function getByClient($client_id)
+    {
+      return $this->eventService->getEventByClient($client_id);
+    }
 }

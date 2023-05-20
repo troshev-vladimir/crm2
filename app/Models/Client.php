@@ -84,4 +84,8 @@ class Client extends Model
     public function contacts() {
         return $this->hasMany(ClientContact::class);
     }
+
+    public function legals() {
+        return $this->hasOne(Legal::class, 'client_id', 'id');
+    }
 }

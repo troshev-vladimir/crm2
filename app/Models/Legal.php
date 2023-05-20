@@ -12,34 +12,25 @@ class Legal extends Model
 	protected $fillable = [
 		'client_id',
 		'1c_kontragent_key',
-		'name',
-		'name_full',
-		'opf',
-		'inn',
-		'adres1',
-		'adres2',
-		'fio1',
-		'fio2',
-		'bank',
-		'rcount',
-		'kcount',
-		'bik',
+		'legal_entity', // Юр.лицо
+		'legal_address', // юр. адрес
+		'address', // фактичекий адрес
 		'ogrn',
+		'inn',
+		'opf',
+		'leader_name',
+		'accouter_name',
+		'bank',
+		'bic',
 		'inn_bank',
 		'kpp',
-		'comment',
-		'fl',
-		'pasport',
-		'pasport_dt',
-		'pasport_issued',
-		'pasport_kod'
-		];
+		'r_count',
+		'k_count',
+		'comment'
+	];
 
 	public function client(): BelongsTo
 	{
-		return $this->belongsTo(
-			related: Client::class,
-			foreignKey: 'client_id'
-			);
+		return $this->belongsTo(Client::class, 'client_id');
 	}
 }

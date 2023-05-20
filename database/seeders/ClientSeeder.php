@@ -45,5 +45,25 @@ class ClientSeeder extends Seeder
             'birth_day' => '1681219268',
             'created_at' => date("Y-m-d H:i:s"),
         ]);
+
+        DB::table('legals')->insert([
+            'client_id' => '1',
+            '1c_kontragent_key' => '13213113',
+            'legal_entity' => '13123',
+            'legal_address' => '123213',
+            'address' => 'asdad',
+            'ogrn' => 'asdasd',
+            'inn' => '2131',
+            'opf' => '231231',
+            'leader_name' => '123123',
+            'accouter_name' => '123',
+            'bank' => 'Сбер',
+            'bic' => 'фыв',
+            'inn_bank' => '123',
+            'kpp' => '123',
+            'r_count' => '222',
+            'k_count' => '123333',
+            'comment' => '333',
+        ]);
     }
 }

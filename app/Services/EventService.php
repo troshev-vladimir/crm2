@@ -34,6 +34,11 @@ class EventService
         return Events::find($id);
     }
 
+    public function getEventByClient($client_id)
+    {
+        return Events::where('client_id', $client_id)->get();
+    }
+
     public function archiveEvent($id)
     {
         $event = Events::find($id);

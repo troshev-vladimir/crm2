@@ -31,7 +31,9 @@ class SaleResource extends JsonResource
             'type' => $this->type,
             'smi' => $this->smi,
             'summa' => $this->summa,
-            'locked' => (bool)$this->locked
+            'locked' => (bool)$this->locked,
+            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at,
         ];
     }
 }
