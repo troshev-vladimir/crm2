@@ -18,6 +18,12 @@ class EventService
 
     public function createEvent(Request $request)
     {
+        $is_exist = count($this->getEventByClient($request->client_id));
+        if ((int) $is_exist) {
+            return response()->json([
+                'message' => 'Нельзя создать событие т.к. на этом клиенте уже есть событие',
+            ], 400);
+        }
         $event = Events::create([
             'fulfilled_date' => null,
             'appointment_date'=> $request->appointment_date,

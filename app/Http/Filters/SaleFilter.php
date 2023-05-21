@@ -58,6 +58,15 @@ class SaleFilter extends QueryFilter
         });
     }
 
+    public function user(string $id)
+    {
+        $this->builder->whereRelation('client', function (Builder $query) use ($id) {
+            $query->whereRelation('user', function (Builder $query) use ($id) {
+                $query->where('id', $id);
+            });
+        })->get();
+    }
+
     public function createdFrom(string $date_from){
         $this->builder->whereDate('created_at', '>=', $date_from);
     }
