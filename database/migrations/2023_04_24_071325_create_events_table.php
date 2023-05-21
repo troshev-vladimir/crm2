@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('result')->default(false);
             $table->date('fulfilled_date')->nullable();
             $table->date('appointment_date');
-            $table->text('comment')->default(false);
+            $table->text('comment');
 
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('event_types');
