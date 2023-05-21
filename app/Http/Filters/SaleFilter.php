@@ -17,6 +17,11 @@ class SaleFilter extends QueryFilter
         $this->builder->where('type_id', $id);
     }
 
+    public function smi(string $id)
+    {
+        $this->builder->where('smi_id', $id);
+    }
+
     public function department_id(string $id)
     {
         $this->builder->whereRelation('client', function (Builder $query) use ($id) {

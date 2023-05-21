@@ -52,13 +52,13 @@ class EventFilter extends QueryFilter
             case '1':
                 $this->builder->where([
                     ['fulfilled_date', '<>', ''], //not null  ..., 'and'
-                    ['column_2', '<>', 'value_2'], // TODO тут надо проверка что с резульатом
+                    ['result', '=', '0'],
                 ]);
                 break;
             case '2':
                 $this->builder->where([
                     ['fulfilled_date', '<>', ''], //not null  ..., 'and'
-                    ['column_2', '<>', 'value_2'], // TODO тут надо проверка что с резульатом
+                    ['result', '=', '1'],
                 ]);
                 break;
             case '3':

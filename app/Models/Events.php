@@ -17,6 +17,8 @@ class Events extends Model
         'client_id',
         'fulfilled_date',
         'appointment_date',
+        'result',
+        'comment',
     ];
 
     protected $dates = [
