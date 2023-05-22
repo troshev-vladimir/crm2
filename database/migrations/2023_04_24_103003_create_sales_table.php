@@ -33,7 +33,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('id')->on('clients');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('sales_types');

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('legals', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('client_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('client_id')->index()->constrained()->onDelete('cascade');
 
             $table->string('1c_kontragent_key',50)->nullable();
 

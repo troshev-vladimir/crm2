@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('division_id');
             $table->foreign('division_id')->references('id')->on('divisions');
+
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
@@ -25,16 +26,16 @@ return new class extends Migration
             $table->unsignedBigInteger('activity_id');
             $table->foreign('activity_id')->references('id')->on('client_activities');
 
-            $table->string('email');
-            $table->string('name');
-            $table->string('phone');
-            $table->string('phone_add');
-            $table->string('address');
-            $table->string('address_add');
-            $table->string('site');
-            $table->string('vk');
-            $table->text('comment');
-            $table->date('birth_day');
+            $table->string('email')->nullable();
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('phone_add')->nullable();
+            $table->string('address')->nullable();
+            $table->string('address_add')->nullable();
+            $table->string('site')->nullable();
+            $table->string('vk')->nullable();
+            $table->text('comment')->nullable();
+            $table->date('birth_day')->nullable();
 
             $table->boolean('active')->default(true);
             $table->boolean('federal')->default(false);

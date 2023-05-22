@@ -16,11 +16,7 @@ class StoreClientsRequest extends FormRequest
         return [
             'email' => 'required|email|unique:clients',
             'name' => 'required|string|max:50',
-            'phone' => 'required|string|max:11',
-            'phone_add' => 'string|max:11',
-            'site' => 'string|max:50',
-            'vk' => 'string|max:50',
-            'birth_day' => 'date',
+            // 'birth_day' => 'date',
             'division_id' => 'required',
         ];
     }

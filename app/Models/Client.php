@@ -86,6 +86,6 @@ class Client extends Model
     }
 
     public function legals() {
-        return $this->hasOne(Legal::class, 'client_id', 'id');
+        return $this->hasMany(Legal::class);
     }
 }
