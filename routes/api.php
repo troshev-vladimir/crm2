@@ -65,7 +65,11 @@ Route::controller(EventController::class)->group(function () {
     Route::put('events/{id}', 'update');
     Route::delete('events/{id}', 'delete');
     Route::post('events/{id}/archive', 'archive');
+    Route::post('events/{id}/accomplish', 'accomplish');
+    Route::post('events/{id}/reschedule', 'reschedule');
 });
+
+
 
 Route::controller(SaleController::class)->group(function () {
     Route::get('sales', 'index')->middleware('department');

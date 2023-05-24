@@ -34,6 +34,15 @@ class EventController extends Controller
       return new EventResource(Events::find($id));
     }
 
+    public function update(StoreEventsRequest $request, $id)
+    {
+      $validated = $request->validated();
+
+      $event = Events::findOrFail($id);
+      $event->update($request->all());
+      return $event;
+    }
+
     public function types()
     {
       return EventTypes::get();
@@ -43,15 +52,6 @@ class EventController extends Controller
     {
       $validated = $request->validated();
       return $this->eventService->createEvent($request);
-    }
-
-    public function update(StoreEventsRequest $request, $id)
-    {
-      $validated = $request->validated();
-
-      $event = Events::findOrFail($id);
-      $event->update($request->all());
-      return $event;
     }
 
     public function delete($id)
@@ -76,5 +76,32 @@ class EventController extends Controller
     public function getByClient($client_id)
     {
       return $this->eventService->getEventByClient($client_id);
+    }
+
+    public function accomplish(Request $request, $id)
+    {
+      $event = Events::findOrFail($id);
+      $event->update([
+        'result' => $request->result,
+        'fulfilled_date' => $request->fulfilled_date,
+        'comment' => $request->comment,
+      ]);
+      $this->eventService->archiveEvent($id);
+      return [
+        'message' => 'Успешно завершено'
+      ];
+    }
+
+    public function reschedule(Request $request, $id)
+    {
+      $event = Events::findOrFail($id);
+      $event->update([
+        'comment' => $request->comment . ' | ПЕРЕНОС СОБЫТИЯ: c ' . $event['appointment_date'] . ' на ' . $request->new_appointment_date,
+        'appointment_date' => $request->new_appointment_date
+      ]);
+
+      return [
+        'message' => 'Успешно перезапланировано: c ' . $event['appointment_date'] . ' на ' . $request->new_appointment_date
+      ];
     }
 }
