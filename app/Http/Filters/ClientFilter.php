@@ -73,4 +73,9 @@ class ClientFilter extends QueryFilter
     {
         $this->builder->where('prioritet', '=', $prioritet);
     }
+
+    public function sortBy(string $order)
+    {
+        $this->builder->orderBy($order, 'desc');
+    }
 }

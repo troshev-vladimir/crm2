@@ -26,14 +26,11 @@ class Sale extends Model
         'summa',
         'title',
         'locked',
+        'created_at',
+        'updated_at',
         // '1c_ref_key',
         // '1c_kontragent_key',
         // '1c_dogovor_key',
-    ];
-
-    protected $dates = [
-        'created_at',
-        'updated_at',
     ];
 
     protected $guarded = ['id'];

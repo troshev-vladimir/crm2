@@ -24,7 +24,7 @@ class EventController extends Controller
     {
       $per_page = $filter->query()['per_page'] ?? 10;
 
-      if ($filter->query()['fulfilled'] == 3 ) {
+      if ($filter->query()['fulfilled'] == '3' || !$filter->query()['fulfilled'] ) {
         $events = Events::filter($filter)->paginate($per_page);
       } else {
         $events = ArchiveEvent::filter($filter)->paginate($per_page);

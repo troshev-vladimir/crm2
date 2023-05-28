@@ -90,4 +90,8 @@ class SaleFilter extends QueryFilter
     public function payedTo(string $date_to){
         $this->builder->whereDate('payed_date', '<=', $date_to);
     }
+
+    public function sortBy(string $order){
+        $this->builder->orderBy($order, 'desc');
+    }
 }

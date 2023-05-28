@@ -15,7 +15,11 @@ class DateService
 
     public function createDate($date)
     {
-        $edate = Carbon::createFromFormat('Y-m-d', $date);
+        if ($date) {
+            $edate = Carbon::createFromFormat('Y-m-d', $date);
+        } else {
+            $edate = null;
+        }
 
         return $edate;
     }

@@ -87,4 +87,9 @@ class EventFilter extends QueryFilter
             }
         });
     }
+
+    public function sortBy(string $order)
+    {
+        $this->builder->orderBy($order, 'desc');
+    }
 }
