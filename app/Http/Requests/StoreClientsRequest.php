@@ -14,18 +14,18 @@ class StoreClientsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email|unique:clients',
-            'name' => 'required|string|max:50',
-            // 'birth_day' => 'date',
+            'name' => 'required|string',
             'division_id' => 'required',
+            'userId' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'email.required' => 'Email is required!',
-            'name.required' => 'Name is required!',
+            'email.required' => 'Не заполненно поле email',
+            'userId.required' => 'Поле userId обязательное',
+            'name.required' => 'Не заполненно поле Имя',
         ];
     }
 }

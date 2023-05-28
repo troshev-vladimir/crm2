@@ -22,9 +22,13 @@ class EventController extends Controller
 
     public function index(EventFilter $filter)
     {
-
       $per_page = $filter->query()['per_page'] ?? 10;
-      $events = Events::filter($filter)->paginate($per_page);
+
+      if ($filter->query()['fulfilled'] == 3 ) {
+        $events = Events::filter($filter)->paginate($per_page);
+      } else {
+        $events = ArchiveEvent::filter($filter)->paginate($per_page);
+      }
 
       return new EventCollection($events);
     }

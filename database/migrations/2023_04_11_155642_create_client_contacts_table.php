@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 
-            $table->unsignedBigInteger('job_id');
+            $table->unsignedBigInteger('job_id')->nullable();
             $table->foreign('job_id')->references('id')->on('client_jobs');
         });
     }

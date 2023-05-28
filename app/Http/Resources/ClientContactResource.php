@@ -12,6 +12,7 @@ class ClientContactResource extends JsonResource
     {
         // JsonResource::withoutWrapping();
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'phone' => $this->phone,
             'phone_add' => $this->phone_add,

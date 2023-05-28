@@ -13,18 +13,26 @@ class ClientContactService
     {
         foreach ($contacts as $contact) {
             $cientContact = ClientContact::create([
-                'name' => $contact['name'],
-                'phone' => $contact['phone'],
-                'phone_add' => $contact['phone_add'],
-                'email' => $contact['email'],
-                'comment' => $contact['comment'],
-                'job_id' => $contact['job'],
+                'name' => $contact['name'] ?? '',
+                'phone' => $contact['phone'] ?? '',
+                'phone_add' => $contact['phone_add'] ?? '',
+                'email' => $contact['email'] ?? '',
+                'comment' => $contact['comment'] ?? '',
+                'job_id' => $contact['job'] ?? null,
                 'client_id' => $clientId,
             ]);
         }
     }
 
-    public function getClientByID($id)
+    public function updateClientContact($contacts, $clientId)
+    {
+        foreach ($newContacts as $newContact) {
+            $contact = ClientContact::findOrFail($newContact['id']);
+            $contact->update($newContact);
+        }
+    }
+
+    public function getClientContactByID($id)
     {
         return ClientContact::find($id);
     }

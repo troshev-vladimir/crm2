@@ -13,6 +13,7 @@ use App\Models\Division;
 use App\Services\ClientService;
 use App\Http\Requests\StoreClientsRequest;
 use App\Http\Filters\ClientFilter;
+use App\Models\Legal;
 
 class ClientsController extends Controller
 {
@@ -42,10 +43,7 @@ class ClientsController extends Controller
 
     public function update(Request $request, $id) {
         // $validated = $request->validated();
-
-        $client = Client::findOrFail($id);
-        $client->update($request->all());
-        return $client;
+        return $this->service->updateClient($request, $id);
     }
 
     public function delete($id) {

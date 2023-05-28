@@ -20,10 +20,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->unsignedBigInteger('potencial_id');
+            $table->unsignedBigInteger('potencial_id')->nullable();
             $table->foreign('potencial_id')->references('id')->on('client_potentials');
 
-            $table->unsignedBigInteger('activity_id');
+            $table->unsignedBigInteger('activity_id')->nullable();
             $table->foreign('activity_id')->references('id')->on('client_activities');
 
             $table->string('email')->nullable();
