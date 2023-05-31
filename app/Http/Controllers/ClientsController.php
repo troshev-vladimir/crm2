@@ -49,6 +49,9 @@ class ClientsController extends Controller
     public function delete($id) {
         $client = Client::findOrFail($id);
         $client->delete();
+        return [
+            'message' => 'Успешно Удалён клиент ' . $client['name']
+        ];
     }
 
     public function getClientJobs(Request $request) {

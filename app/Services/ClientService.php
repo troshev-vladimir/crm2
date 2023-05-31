@@ -54,7 +54,10 @@ class ClientService
         if ($request->contacts && count($request->contacts)) {
             $clientContact = $this->clientContactService->createClientContact($request->contacts, $client['id']);
         }
-        return $client;
+        return [
+            'message' => 'Успешно создан новый клиент ' . $client['name']
+        ];
+        // return $client;
     }
 
     public function updateClient(Request $request, $id)
@@ -67,9 +70,12 @@ class ClientService
         }
 
         if ($request->contacts && count($request->contacts)) {
-            $clientContact = $this->clientContactService->updateClientContact($request->contacts, $client['id']);
+            $clientContact = $this->clientContactService->updateClientContact($request->contacts);
         }
-        return $client;
+        return [
+            'message' => 'Успешно отредактирован клиент ' . $client['name']
+        ];
+        // return $client;
     }
 
     public function getClientsByDepartment($departmentId)

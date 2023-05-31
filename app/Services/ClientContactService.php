@@ -24,7 +24,7 @@ class ClientContactService
         }
     }
 
-    public function updateClientContact($contacts, $clientId)
+    public function updateClientContact($newContacts)
     {
         foreach ($newContacts as $newContact) {
             $contact = ClientContact::findOrFail($newContact['id']);
