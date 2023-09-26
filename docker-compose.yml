@@ -1,0 +1,55 @@
+# Use root/example as user/password credentials
+version: "3.8"
+
+services:
+  nginx:
+    image: "nginx:stable-alpine"
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./src/:/var/www/laravel
+  php:
+    build:
+      context: docker
+      dockerfile: php.Dockerfile
+    container_name: phpcontainer
+    volumes:
+      - ./src:/var/www/laravel
+    # comand: php artisan serve
+    ports:
+      - "8082:8080"
+    depends_on:
+      - db
+
+  db:
+    image: mysql
+    # command: --default-authentication-plugin=mysql_native_password
+    # restart: always
+    ports:
+      - "3316:3306"
+    environment:
+      - MYSQL_DATABASE=crm2
+      # - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - ./src:/var/www/laravel
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+
+  composer:
+    build:
+      context: docker
+      dockerfile: composer.Dockerfile
+    volumes:
+      - ./src:/var/www/laravel
+
+  # for artisan cd /var/www/laravel php artisan ...
+  # for artisan cd ./src php artisan ...
